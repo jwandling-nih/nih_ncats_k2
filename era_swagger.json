@@ -8,7 +8,7 @@
             "email": "xxx.xxx@nih.gov"
         }
     },
-    "host": "127.0.0.1:5000",
+    "host": "k2-dev.ncats.io",
     "schemes": [
     "https"
     ],
