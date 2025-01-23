@@ -10,7 +10,7 @@
     },
     "host": "127.0.0.1:5000",
     "schemes": [
-    "https"
+    "http"
     ],
     "paths": {
         "/docservice/dataservices/document/keyId/{study_version_id}/HSTUDY": {
