@@ -1,0 +1,47 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Call to eRA doc services API to return eRA Study PDF.  The call requires TLS mutual cert auth",
+        "version": "1.0.0",
+        "title": "Call to eRA doc services API to return eRA Study PDF",
+        "contact": {
+            "email": "xxx.xxx@nih.gov"
+        }
+    },
+    "host": "services.internal.era.nih.gov",
+    "schemes": [
+    "https"
+    ],
+    "paths": {
+        "/docservice/dataservices/document/keyId/{study_version_id}/HSTUDY": {
+            "get": {
+                "summary": "returns study PDF based on study_version_id",
+                "operationId": "returnStudyPDF",
+                "description": "",
+                "produces": [
+                    "application/pdf"
+                ],
+                "parameters": [
+                    {
+                        "name": "study_version_id",
+                        "in": "path",
+                        "description": "pass a study_version_id for the study",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "search results matching criteria",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "bad input parameter"
+                    }
+                }
+            }
+        }
+    }
+}
