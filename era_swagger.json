@@ -32,9 +32,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "search results matching criteria",
+                        "description": "pdf file",
                         "schema": {
-                            "type": "string"
+                            "type": "file"
                         }
                     },
                     "404": {
