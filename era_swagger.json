@@ -34,7 +34,7 @@
                     "200": {
                         "description": "pdf file",
                         "schema": {
-                            "type": "file"
+                            "type": "object"
                         }
                     },
                     "404": {
