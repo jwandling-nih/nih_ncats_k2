@@ -1,0 +1,98 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Azure Blob Storage API",
+    "version": "1.0.0",
+    "description": "API documentation for Azure Blob Storage operations"
+  },
+  "host": "ncatsk2.blob.core.windows.net",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "x-api-key",
+      "in": "header",
+      "description": "API key for authentication"
+    }
+  },
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "paths": {
+    "/blob": {
+      "put": {
+        "summary": "Upload a blob to Azure Blob Storage",
+        "description": "Uploads a new blob or updates an existing blob in a specified container.",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "query",
+            "required": true,
+            "description": "Name of the container",
+            "type": "string"
+          },
+          {
+            "name": "blob",
+            "in": "query",
+            "required": true,
+            "description": "Name of the blob",
+            "type": "string"
+          },
+          {
+            "name": "x-ms-blob-type",
+            "in": "header",
+            "required": true,
+            "description": "Specifies the type of the blob",
+            "type": "string",
+            "enum": ["BlockBlob", "PageBlob", "AppendBlob"]
+          },
+          {
+            "name": "x-ms-meta-{name}",
+            "in": "header",
+            "required": false,
+            "description": "Metadata tags to associate with the blob",
+            "type": "string"
+          }
+        ],
+        "consumes": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "201": {
+            "description": "Blob created or updated successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "The ETag of the blob"
+                },
+                "lastModified": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last modified time of the blob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Container or blob not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+      }
+    }
+  }
