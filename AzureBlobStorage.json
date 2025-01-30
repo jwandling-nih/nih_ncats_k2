@@ -5,7 +5,7 @@
       "title": "Azure Blob Storage",
       "description": "API for Azure Blob Storage operations using SAS authentication"
     },
-    "host": "ncatsk2.blob.core.windows.net:443",
+    "host": "ncatsk2.blob.core.windows.net",
     "schemes": [
       "https"
     ],
