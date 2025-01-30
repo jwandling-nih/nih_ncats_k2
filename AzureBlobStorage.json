@@ -1,98 +1,81 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Azure Blob Storage API",
-    "version": "1.0.0",
-    "description": "API documentation for Azure Blob Storage operations"
-  },
-  "host": "ncatsk2.blob.core.windows.net",
-  "schemes": [
-    "https"
-  ],
-  "securityDefinitions": {
-    "api_key": {
-      "type": "apiKey",
-      "name": "x-api-key",
-      "in": "header",
-      "description": "API key for authentication"
-    }
-  },
-  "security": [
-    {
-      "api_key": []
-    }
-  ],
-  "paths": {
-    "/blob": {
-      "put": {
-        "summary": "Upload a blob to Azure Blob Storage",
-        "description": "Uploads a new blob or updates an existing blob in a specified container.",
-        "parameters": [
-          {
-            "name": "container",
-            "in": "query",
-            "required": true,
-            "description": "Name of the container",
-            "type": "string"
-          },
-          {
-            "name": "blob",
-            "in": "query",
-            "required": true,
-            "description": "Name of the blob",
-            "type": "string"
-          },
-          {
-            "name": "x-ms-blob-type",
-            "in": "header",
-            "required": true,
-            "description": "Specifies the type of the blob",
-            "type": "string",
-            "enum": ["BlockBlob", "PageBlob", "AppendBlob"]
-          },
-          {
-            "name": "x-ms-meta-{name}",
-            "in": "header",
-            "required": false,
-            "description": "Metadata tags to associate with the blob",
-            "type": "string"
-          }
-        ],
-        "consumes": [
-          "application/octet-stream"
-        ],
-        "responses": {
-          "201": {
-            "description": "Blob created or updated successfully",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "etag": {
-                  "type": "string",
-                  "description": "The ETag of the blob"
-                },
-                "lastModified": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "The last modified time of the blob"
-                }
-              }
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Azure Blob Storage",
+      "description": "API for Azure Blob Storage operations using SAS authentication"
+    },
+    "host": "youraccount.blob.core.windows.net",
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/{container}/{blob}": {
+        "put": {
+          "summary": "Upload a blob",
+          "description": "Uploads a new blob or replaces an existing blob using SAS authentication",
+          "parameters": [
+            {
+              "name": "container",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the container"
+            },
+            {
+              "name": "blob",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the blob"
+            },
+            {
+              "name": "sas_token",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "description": "The SAS token"
+            },
+            {
+              "name": "x-ms-blob-type",
+              "in": "header",
+              "required": true,
+              "type": "string",
+              "description": "The type of blob. Must be set to BlockBlob, PageBlob, or AppendBlob."
+            },
+            {
+              "name": "Content-Length",
+              "in": "header",
+              "required": true,
+              "type": "integer",
+              "description": "The length of the request body in bytes."
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              },
+              "description": "The content of the blob"
             }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Container or blob not found"
-          },
-          "500": {
-            "description": "Internal server error"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
           }
         }
-      }
       }
     }
   }
