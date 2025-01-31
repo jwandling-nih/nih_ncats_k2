@@ -5,7 +5,7 @@
         "title": "Azure Blob Storage API",
         "description": "API to list blobs in a container using SAS URL authentication"
     },
-    "host": "https://ncatsk2.blob.core.windows.net",
+    "host": "ncatsk2.blob.core.windows.net",
     "basePath": "/",
     "schemes": [
         "https"
