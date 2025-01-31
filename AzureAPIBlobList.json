@@ -30,13 +30,6 @@
                         "description": "piece of the SAS token"
                     },
                     {
-                        "name": "sc",
-                        "in": "query",
-                        "required": true,
-                        "type": "string",
-                        "description": "piece of the SAS token"
-                    },
-                    {
                         "name": "st",
                         "in": "query",
                         "required": true,
