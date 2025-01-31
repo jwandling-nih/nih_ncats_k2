@@ -10,7 +10,7 @@
         "https"
     ],
     "paths": {
-        "/{containerName}?restype=container": {
+        "/{containerName}": {
             "get": {
                 "summary": "List Blobs",
                 "description": "Lists blobs in the specified container",
