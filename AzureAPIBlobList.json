@@ -119,8 +119,5 @@
                 }
             }
         }
-    },
-    "definitions": {},
-    "securityDefinitions": {},
-    "tags": []
+    }
 }
