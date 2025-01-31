@@ -1,0 +1,126 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Azure Blob Storage API",
+        "description": "API to list blobs in a container using SAS URL authentication"
+    },
+    "host": "https://ncatsk2.blob.core.windows.net",
+    "basePath": "/",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/{containerName}?restype=container&comp=list": {
+            "get": {
+                "summary": "List Blobs",
+                "description": "Lists blobs in the specified container",
+                "parameters": [
+                    {
+                        "name": "containerName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the container"
+                    },
+                    {
+                        "name": "sp",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "piece of the SAS token"
+                    },
+                    {
+                        "name": "st",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "start date of the SAS token"
+                    },
+                    {
+                        "name": "se",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "expriation date of the SAS token"
+                    },
+                    {
+                        "name": "spr",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "protocol allowed the SAS token"
+                    },
+                    {
+                        "name": "sv",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "service version for the SAS token"
+                    },
+                    {
+                        "name": "sr",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "actions allowed for the SAS token"
+                    },
+                    {
+                        "name": "sig",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "signature for SAS token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of blobs in the container",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "blobs": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "The name of the blob"
+                                            },
+                                            "createdDate": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "description": "The created date of the blob"
+                                            },
+                                            "lastModified": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "description": "The last modified date of the blob"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "description": "Error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {},
+    "securityDefinitions": {},
+    "tags": []
+}
