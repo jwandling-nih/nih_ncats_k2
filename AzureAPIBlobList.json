@@ -59,7 +59,7 @@
                         "description": "service version for the SAS token"
                     },
                     {
-                        "name": "sr",
+                        "name": "srt",
                         "in": "query",
                         "required": true,
                         "type": "string",
